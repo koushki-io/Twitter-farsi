@@ -1,0 +1,16 @@
+@import "../../Sass/variabale_mixin";
+.layout{
+
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+  
+}
+.LeftSidebar{
+    width: 25%;
+    height: 100%;
+   
+    @include font(1.2rem,600,$black)
+}
