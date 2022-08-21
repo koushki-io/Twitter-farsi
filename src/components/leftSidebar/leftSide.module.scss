@@ -1,0 +1,69 @@
+@import "../../Sass/variabale_mixin";
+
+.LeftSidebar{
+    height: 100%;
+    border-right: 2px solid $blue;
+   
+    @include font(1.2rem,600,$black)
+}
+.profile{
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: end;
+        padding: 10px 0 10px 20px;
+
+    img{
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    span{
+        @include font(1rem,600,#000)
+    }
+}
+
+.Content{
+    width:calc(100% - 30px);
+    background: $Wgreen;
+    margin: 30px auto;
+    border-radius: 30px;
+
+    
+
+}
+.Title{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+   
+
+
+ h4{
+    @include font(1.1rem,500,#000)
+ }       
+}
+.item{
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid $Wblack;
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+    div{
+        margin-right: 5px;
+    }
+    h4{
+        @include font(.9rem,600,#000);
+margin-bottom: -5px;
+    }
+    span{
+        @include font(.8rem,400,rgba(0,0,0,.55))
+    }
+}
