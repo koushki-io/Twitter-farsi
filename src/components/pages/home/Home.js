@@ -1,10 +1,13 @@
 import { Home, Photo } from '@mui/icons-material'
-import React from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import styles from './main.module.scss'
 import profil from '../../../images/Profile1.jpg'
 import Samsung from '../../../images/Samsung.jpg'
 import TiweeetList from '../../tiweetList/TweetList'
 import Header from '../../header/Header'
+import { renderTweetInput } from '../../helper/renderTweet'
+
+
 
 export const TweetList=[
   {
@@ -68,6 +71,17 @@ export const TweetList=[
 
 
 const MyHome = () => {
+  const input=useRef();
+  
+  const [tweet, settweet] = useState()
+  useEffect(() => {
+   input.current.addEventListener("input", function(e) {
+    console.log(e.target.innerText);
+  
+      
+  }, false);
+  }, [])
+  
   return (
     <div className={styles.Main}>
 
@@ -76,7 +90,10 @@ const MyHome = () => {
         <div className={styles.topbarBottom}>
             <div className={styles.Profile}>
                 <img  src={profil} alt="profile" />
-                <div className={styles.input} contentEditable={true} data-placeholder='edit me' ></div>
+                <div 
+                //  dangerouslySetInnerHTML={tweet} 
+                 ref={input} className={styles.input} 
+                 contentEditable={true} data-placeholder='توییت کن' ></div>
             </div>
             <div className={styles.twitt}>
                 <Photo className={styles.icon}/>

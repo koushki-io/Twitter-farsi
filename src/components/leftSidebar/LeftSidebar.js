@@ -7,6 +7,10 @@ import BillGates from '../../images/BillGates.jpg'
 import Mike_IMC from '../../images/Mike_IMC.jpg'
 import Shirley_IMC from '../../images/Shirley_IMC.jpg'
 import { ButtonBase } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+
+
+
 
 const user=[
     {name: "Xiaomi", image:Xiaomi  , email:"@Xiaomi" },
@@ -17,6 +21,8 @@ const user=[
 ]
 
 const LeftSidebar = () => {
+   
+    const navigate= useNavigate();
     
   return (
     <div className={styles.LeftSidebar}>
@@ -27,18 +33,24 @@ const LeftSidebar = () => {
         
         <div className={styles.Content}>
             <div className={styles.Title}>
+                
             <h4>بهترین خبرنگاران</h4>
             </div>
 
                     {user.map((item,index)=>{
-                        return <ButtonBase className={styles.item} key={index}>
+                        return <ButtonBase onClick={()=>{
+                            navigate(`/users`)
+                        }}
+                        className={styles.item} key={index}>
                         <img src={item.image} alt="profile" />
                         <div>
                             <h4>{item.name}</h4>
                             <span>{item.email}</span>
                         </div>
+                        
         
                     </ButtonBase>
+                  
                     })}
             
         </div>

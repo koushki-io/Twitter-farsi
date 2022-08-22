@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './rightSide.module.scss'
 import {Twitter,Tag} from '@mui/icons-material';
+import {useNavigate} from 'react-router-dom';
 const Hashtag=[
   "پرچم_دار_جدید",
   "کرونا_ویروس",
@@ -14,9 +15,14 @@ const Hashtag=[
 ]
 
 const RightSidebar = () => {
+    const navigate = useNavigate();
   return (
     <div className={styles.RightSidebar}>
-      <div className={styles.topbar}>
+      <div 
+      onClick={()=>{
+        navigate("/home")
+      }}
+       className={styles.topbar}>
           <Twitter className={styles.icon}/>
         <h3>توییتر فارسی</h3>
 
@@ -30,7 +36,11 @@ const RightSidebar = () => {
         </div>
 
         {Hashtag.map((item,index)=>{
-        return <div key={index} className={styles.ConetentItem}>
+        return <div 
+        onClick={()=>{
+          navigate('/hashtags')
+        }}
+        key={index} className={styles.ConetentItem}>
         <Tag className={styles.tag}/>
         <span>{item}</span>
       </div>
