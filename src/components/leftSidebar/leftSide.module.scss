@@ -30,6 +30,7 @@
     background: $Wgreen;
     margin: 30px auto;
     border-radius: 30px;
+    overflow: hidden;
 
     
 
@@ -47,9 +48,11 @@
  }       
 }
 .item{
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid $Wblack;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: start !important;
+    padding: 10px !important;
+    border-top: 1px solid $Wblack !important;
     img{
         width: 40px;
         height: 40px;

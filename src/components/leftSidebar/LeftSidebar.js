@@ -6,8 +6,18 @@ import Samsung  from '../../images/Samsung.jpg'
 import BillGates from '../../images/BillGates.jpg'
 import Mike_IMC from '../../images/Mike_IMC.jpg'
 import Shirley_IMC from '../../images/Shirley_IMC.jpg'
+import { ButtonBase } from '@mui/material'
+
+const user=[
+    {name: "Xiaomi", image:Xiaomi  , email:"@Xiaomi" },
+    {name: "Samsung", image:Samsung  , email:"@Samsung" },
+    {name: "BillGates", image:BillGates  , email:"@BillGates" },
+    {name: "Mike_IMC", image:Mike_IMC  , email:"@Mike_IMC" },
+    {name: "Shirley_IMC", image:Shirley_IMC  , email:"@Shirley_IMC" },
+]
 
 const LeftSidebar = () => {
+    
   return (
     <div className={styles.LeftSidebar}>
         <div className={styles.profile}>
@@ -20,46 +30,17 @@ const LeftSidebar = () => {
             <h4>بهترین خبرنگاران</h4>
             </div>
 
-            <div className={styles.item}>
-                <img src={Xiaomi} alt="profile" />
-                <div>
-                    <h4>Xiaomi</h4>
-                    <span>@Xiaomi</span>
-                </div>
-            </div>
-
-            <div className={styles.item}>
-                <img src={Samsung} alt="profile" />
-                <div>
-                    <h4>Samsung</h4>
-                    <span>@Samsung</span>
-                </div>
-            </div>
-
-            <div className={styles.item}>
-                <img src={BillGates} alt="profile" />
-                <div>
-                    <h4>BillGates</h4>
-                    <span>@BillGates</span>
-                </div>
-            </div>
-
-            <div className={styles.item}>
-                <img src={Mike_IMC} alt="profile" />
-                <div>
-                    <h4>Mike_IMC</h4>
-                    <span>@Mike_IMC</span>
-                </div>
-            </div>
-
-            <div className={styles.item}>
-                <img src={Shirley_IMC} alt="profile" />
-                <div>
-                    <h4>Shirley_IMC</h4>
-                    <span>@Shirley_IMC</span>
-                </div>
-            </div>
-
+                    {user.map((item,index)=>{
+                        return <ButtonBase className={styles.item} key={index}>
+                        <img src={item.image} alt="profile" />
+                        <div>
+                            <h4>{item.name}</h4>
+                            <span>{item.email}</span>
+                        </div>
+        
+                    </ButtonBase>
+                    })}
+            
         </div>
     </div>
   )
