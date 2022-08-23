@@ -1,4 +1,5 @@
 import React from 'react'
+import { ToastContainer } from 'react-toastify';
 import './App.scss'
 import Layout from './components/layout/Layout'
 import {BrowserRouter,Route,Routes,Navigate} from 'react-router-dom'
@@ -7,14 +8,20 @@ import Hashtag from "./components/pages/tweetByHashtag/Hashtag"
 import User from "./components/pages/tweetByUser/User"
 import PageNotFound from "./components/pages/Page404/PageNotFound"
 import AuthPage from './components/pages/auth/AuthPage'
+import { useSelector } from 'react-redux'
 
 
 const flag=true
 function App() {
+ const{data}= useSelector(x=>x.getSignUp)
   return (
     <div className='App'>
+      <ToastContainer 
+    
+    theme='colored'
+    />
       <BrowserRouter>
-{flag 
+{!data.name 
       ?
        <Routes>
       <Route path='/login' element={<AuthPage/>}/>
@@ -36,6 +43,7 @@ function App() {
       
     
       </BrowserRouter>
+
 
 
     </div>

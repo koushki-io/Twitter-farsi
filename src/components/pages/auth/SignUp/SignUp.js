@@ -1,11 +1,17 @@
 import { Password } from '@mui/icons-material'
 import React,{useState,useEffect} from 'react'
+import { useDispatch,useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { SignUpAction } from '../../../redux/action'
 import { notify } from '../Alert/tost'
 import { validate } from '../validte/validate'
 import styles from "./SignUp.module.scss"
 
 
 const SignUp = () => {
+  const{loading}= useSelector(x=>x.getSignUp)
+  const navigate= useNavigate()
+ const dispatch = useDispatch()
   const [SignUp, setSignUp] = useState({
     fullname:"",
     username:"",
@@ -39,14 +45,15 @@ const SignUp = () => {
 
   const LoginHandler=()=>{
     const sendSignUp={
-      "name":SignUp.fullname,
-      "username" : SignUp.username,
-      "password": SignUp.password
+      name:SignUp.fullname,
+      username : SignUp.username,
+      password: SignUp.password
     }
     
     if(!Object.keys(Errors).length){
 
-        notify("ورود موفقیت امیز","success")
+        dispatch(SignUpAction(sendSignUp,notify,navigate))
+        
     }else{
      
      Object.values(Errors).map((item)=>notify(item,"error"))
@@ -95,11 +102,12 @@ const SignUp = () => {
             onChange={ChangeHandler}
             value={SignUp.confirmPassword} type="password" name='confirmPassword' 
              />
+             {loading && <span className={styles.loading}>درحال بارگذاری ...</span>}
         </div>
 
-        <button 
+        <button
         onClick={LoginHandler}
-        >ورود</button>
+        >ثبت نام</button>
     </form>
   </div>
   )

@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import { Paper, Tab, Tabs } from '@mui/material'
 import Login from "./Login/Login"
 import SignUp from "./SignUp/SignUp"
-import { ToastContainer } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 const LOGIN_TAB_VALUE= 1
@@ -16,10 +16,7 @@ const AuthPage = () => {
         setvalue(newValue)
     }
   return (<div className={styles.container}>
-    <ToastContainer 
     
-    theme='colored'
-    />
     <Paper 
     className={styles.paper}
     

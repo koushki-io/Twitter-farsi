@@ -58,3 +58,7 @@
           }
     }
 }
+.loading{
+  @include font(.9rem,500,rgba($color:green, $alpha: .85));
+  margin-top: 5px;
+}
