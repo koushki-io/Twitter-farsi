@@ -1,3 +1,5 @@
+@import './Sass/variabale_mixin';
+
 *{
     font-family: 'Source Sans Pro', sans-serif;
     margin: 0;
@@ -6,4 +8,5 @@
 }
 body{
     direction: rtl;
+    background: $white;
 }

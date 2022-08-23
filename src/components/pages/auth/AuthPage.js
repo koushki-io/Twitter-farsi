@@ -1,9 +1,13 @@
 import styles from './auth.module.scss'
 import React,{useState} from 'react'
 import { Paper, Tab, Tabs } from '@mui/material'
+import Login from "./Login/Login"
+import SignUp from "./SignUp/SignUp"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LOGIN_TAB_VALUE= 1
-const REGEX_TAB_VALUE= 2
+const SIGNUP_TAB_VALUE= 2
 
 const AuthPage = () => {
     const [value, setvalue] = useState(LOGIN_TAB_VALUE)
@@ -12,6 +16,10 @@ const AuthPage = () => {
         setvalue(newValue)
     }
   return (<div className={styles.container}>
+    <ToastContainer 
+    
+    theme='colored'
+    />
     <Paper 
     className={styles.paper}
     
@@ -25,60 +33,18 @@ const AuthPage = () => {
     aria-label="disabled tabs example"
   >
     <Tab className={styles.tab} label="ورود"  value={LOGIN_TAB_VALUE}/>
-    <Tab className={styles.tab} label='ثبت نام' value={REGEX_TAB_VALUE}/>
+    <Tab className={styles.tab} label='ثبت نام' value={SIGNUP_TAB_VALUE}/>
   </Tabs>
 
-  {value === REGEX_TAB_VALUE
-  
+  {value === SIGNUP_TAB_VALUE  
   &&
-  <div className={styles.Login}>
-    <form onSubmit={(e)=>e.preventDefault()}>
+<SignUp/>
+ }
+  {value === LOGIN_TAB_VALUE 
+  && 
+  <Login/>
+   }
 
-
-        <div className={styles.LoginItem}>
-            <label>نام کامل</label>
-            <input type="text" name='username'  />
-        </div>
-        <div className={styles.LoginItem}>
-            <label> ایمیل</label>
-            <input type="text" name='email'  />
-        </div>
-        <div className={styles.LoginItem}>
-            <label>رمز عبور</label>
-            <input type="password" name='password' 
-             />
-        </div>
-        <div className={styles.LoginItem}>
-            <label>تکرار رمز عبور </label>
-            <input type="password" name='confirmPassword' 
-             />
-        </div>
-
-        <button>ورود</button>
-    </form>
-  </div>
-  }
-
-  {value === LOGIN_TAB_VALUE
-  &&
-  <div className={styles.Login}>
-    <form onSubmit={(e)=>e.preventDefault() }>
-
-
-        <div className={styles.LoginItem}>
-            <label>نام کاربری</label>
-            <input type="text" name='username'  />
-        </div>
-        <div className={styles.LoginItem}>
-            <label>رمز عبور</label>
-            <input type="password" name='password' 
-             />
-        </div>
-        <button>ورود</button>
-
-    </form>
-  </div>
-  }
 </Paper>
 
 </div>
