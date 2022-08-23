@@ -1,8 +1,15 @@
 import React, { useState,useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { LoginAction } from '../../../redux/action'
 import { notify } from '../Alert/tost'
 import { validate } from '../validte/validate'
 import styles from "./login.module.scss"
+
 const Login = () => {
+  const disptch= useDispatch();
+  const navigate= useNavigate();
+
   const [Login, setLogin] = useState({
     username:"",
     password:"",
@@ -27,8 +34,7 @@ const Login = () => {
   const SignUpHandler=()=>{
     const sendLogin=Login;
     if(!Object.keys(Errors).length){
-
-      notify("ورود موفقیت امیز","success")
+      disptch(LoginAction(sendLogin,notify,navigate))
   }else{
    
    Object.values(Errors).map((item)=>notify(item,"error"))
