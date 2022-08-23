@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch ,useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { LoginAction } from '../../../redux/action'
 import { notify } from '../Alert/tost'
@@ -9,7 +9,7 @@ import styles from "./login.module.scss"
 const Login = () => {
   const disptch= useDispatch();
   const navigate= useNavigate();
-
+  const{loading}= useSelector(x=>x.getSignUp)
   const [Login, setLogin] = useState({
     username:"",
     password:"",
@@ -68,6 +68,8 @@ const Login = () => {
             onChange={ChangeHandler}
             value={Login.password} type="password" name='password' 
              />
+             {loading && <span className={styles.loading}>درحال بارگذاری ...</span>}
+
         </div>
         <button
         onClick={SignUpHandler}

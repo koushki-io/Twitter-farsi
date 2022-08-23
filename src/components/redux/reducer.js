@@ -4,7 +4,7 @@ export const SignUpReducr=(state={data:{},loading:false},action)=>{
             return {...state,loading:true}
         case "SUCCESS":
             return {...state,loading:false,data:action.payload}
-        case "REQUEST":
+        case "ERROR":
             return {...state,loading:false}
         default:
          return state
