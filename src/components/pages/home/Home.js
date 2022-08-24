@@ -7,7 +7,7 @@ import TiweeetList from '../../tiweetList/TweetList'
 import Header from '../../header/Header'
 import { renderTweetInput } from '../../helper/renderTweet'
 import { getAllTweetAction } from '../../redux/action'
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 import { notify } from '../auth/Alert/tost'
 
 
@@ -73,7 +73,9 @@ export const TweetList=[
 ]
 
 const MyHome = () => {
-    const dispatch= useDispatch()
+    const dispatch= useDispatch();
+    const {tweets,loading}= useSelector(x=>x.getTweets)
+    
   const input=useRef();
   
   
@@ -82,9 +84,7 @@ const MyHome = () => {
     dispatch(getAllTweetAction(notify))
    input.current.addEventListener("input", function(e) {
     console.log(e.target.innerText);
-    
-  
-      
+
   }, false);
   }, [])
   
@@ -106,9 +106,11 @@ const MyHome = () => {
                 <button>توییت</button>
             </div>
         </div>
-
+                {tweets &&  
+            <TiweeetList TweetList={tweets}/>
+                
+                }
         
-            <TiweeetList TweetList={TweetList}/>
       
     </div>
   )

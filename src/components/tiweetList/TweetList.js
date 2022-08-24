@@ -11,12 +11,12 @@ const TiweeetList = ({TweetList}) => {
     <div className={styles.TiweeetList}>
 
       {TweetList.map((tweet,index)=>{
-        return <div key={index} className={styles.Item}>
+        return <div key={tweet._id} className={styles.Item}>
         <div className={styles.Profile}>
-          <img src={tweet.sender.image} alt="profile" />
+          <img src={tweet.user.image} alt="profile" />
             <div>
-            <span className={styles.name}>{tweet.sender.name}</span>
-          <span className={styles.email}>{tweet.sender.id}</span>
+            <span className={styles.name}>{tweet.user.name}</span>
+          <span className={styles.email}>{tweet.user.username}</span>
             </div>
         </div>
         <div className={styles.Content}>
@@ -24,7 +24,7 @@ const TiweeetList = ({TweetList}) => {
         
         </div>
         <div className={styles.Box}>
-          <span>{tweet.like}</span>
+          <span>{tweet.likes}</span>
           <Favorite className={styles.HeartIcon}/>
           <Loop className={styles.Loop} />
                     </div>

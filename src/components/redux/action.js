@@ -80,18 +80,16 @@ export const UploadPhotoAction=(Photo,notify,setimagePath)=>async(dispatch)=>{
     }
 }
 export const getAllTweetAction=(notify)=>async(dispatch)=>{
-    alert("req yes")
+   
     dispatch({type:"REQUEST_TWEETS"})
     try {
         const {data}= await getAxios().post("/getAllTweet")
         dispatch({type:"SUCCESS_TWEETS",payload:data})
-        notify("پروفایل با موفقیت ذخیره شد ","success")
-        alert("yes")
+       
         
     } catch (error) {
         dispatch({type:"ERROR_TWEETS"})
         notify(error.response.data.message,"error") 
-        alert("error")
         
     }
 }
