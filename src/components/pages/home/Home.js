@@ -113,10 +113,10 @@ const MyHome = () => {
         <div className={styles.topbarBottom}>
             <div className={styles.Profile}>
                 <img  src={getimage()} alt="profile" />
-                <div 
+                <input  
                 //  dangerouslySetInnerHTML={tweet} 
-                 ref={input} className={styles.input} 
-                 contentEditable={true} data-placeholder='توییت کن' ></div>
+                  className={styles.input} 
+                 placeholder='توییت کن' />
             </div>
             <div className={styles.twitt}>
                 <Photo className={styles.icon}/>
