@@ -11,7 +11,7 @@ const image=localStorage.getItem("image") ? JSON.parse(localStorage.getItem("ima
 
 const initial={
     getSignUp:{user:user,loading:false},
-    getPhoto:image,
+    getPhoto:{photo:image,loading:false},
 }
 
 const reducer=combineReducers({

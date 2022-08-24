@@ -34,7 +34,7 @@ const LeftSidebar = () => {
     const [imageFile, setimageFile] = useState()
     const [imagePath, setimagePath] = useState(false)
     const{user}= useSelector(x=>x.getSignUp)
-    const photo= useSelector(x=>x.getPhoto)
+    const {photo}= useSelector(x=>x.getPhoto)
 
     
 const disptch =useDispatch()
@@ -56,7 +56,7 @@ const disptch =useDispatch()
         if(imagePath){
             return imagePath
         }else if(photo){
-            return photo.imagePath
+            return photo
         } else{
             return ProfileUser
         }

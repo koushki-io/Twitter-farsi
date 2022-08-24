@@ -2,6 +2,7 @@ import { Home, Photo } from '@mui/icons-material'
 import React,{useEffect, useRef, useState} from 'react'
 import styles from './main.module.scss'
 import profil from '../../../images/Profile1.jpg'
+import userprofile from '../../../images/user.png'
 import Samsung from '../../../images/Samsung.jpg'
 import TiweeetList from '../../tiweetList/TweetList'
 import Header from '../../header/Header'
@@ -74,10 +75,22 @@ export const TweetList=[
 
 const MyHome = () => {
     const dispatch= useDispatch();
+    const {photo}=useSelector(x=>x.getPhoto)
     const {tweets,loading}= useSelector(x=>x.getTweets)
+    const {user}= useSelector(x=>x.getSignUp)
     
   const input=useRef();
-  
+
+    const getimage=()=>{
+    
+      
+       if(photo){
+            return photo
+          }
+          else{
+                return userprofile
+          }
+    }
   
   const [tweet, settweet] = useState()
   useEffect(() => {
@@ -95,7 +108,7 @@ const MyHome = () => {
 
         <div className={styles.topbarBottom}>
             <div className={styles.Profile}>
-                <img  src={profil} alt="profile" />
+                <img  src={getimage()} alt="profile" />
                 <div 
                 //  dangerouslySetInnerHTML={tweet} 
                  ref={input} className={styles.input} 
