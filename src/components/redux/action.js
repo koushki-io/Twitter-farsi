@@ -59,7 +59,6 @@ export const logOutAction=(navigate)=>(dispatch)=>{
 
 
 export const UploadPhotoAction=(Photo,notify,setimagePath)=>async(dispatch)=>{
-   
     dispatch({type:"REQUEST_PHOTO"})
     try {
         const {data}= await getAxios().post("/uploadUserPhoto",Photo)
@@ -85,6 +84,20 @@ export const getAllTweetAction=(notify)=>async(dispatch)=>{
         
     } catch (error) {
         dispatch({type:"ERROR_TWEETS"})
+        notify(error.response.data.message,"error") 
+        
+    }
+}
+
+export const newTweetAction=(newTweet,notify)=>async(dispatch)=>{
+    dispatch({type:"REQUEST_NEWTWEET"})
+    try {
+        const {data}= await getAxios().post("/uploadUserPhoto",newTweet)
+        dispatch({type:"SUCCESS_NEWTWEET",payload:data.imagePath})
+        notify(" توییت ثبت شد","success")
+            
+    } catch (error) {
+        dispatch({type:"ERROR_NEWTWEET"})
         notify(error.response.data.message,"error") 
         
     }

@@ -7,7 +7,7 @@ import Samsung from '../../../images/Samsung.jpg'
 import TiweeetList from '../../tiweetList/TweetList'
 import Header from '../../header/Header'
 import { renderTweetInput } from '../../helper/renderTweet'
-import { getAllTweetAction } from '../../redux/action'
+import { getAllTweetAction, newTweetAction } from '../../redux/action'
 import { useDispatch , useSelector } from 'react-redux'
 import { notify } from '../auth/Alert/tost'
 
@@ -79,7 +79,7 @@ const MyHome = () => {
     const {tweets,loading}= useSelector(x=>x.getTweets)
     const {user}= useSelector(x=>x.getSignUp)
     
-  const input=useRef();
+  // const input=useRef();
 
     const getimage=()=>{
     
@@ -95,11 +95,15 @@ const MyHome = () => {
   const [tweet, settweet] = useState()
   useEffect(() => {
     dispatch(getAllTweetAction(notify))
-   input.current.addEventListener("input", function(e) {
-    console.log(e.target.innerText);
+  //  input.current.addEventListener("input", function(e) {
+  //   console.log(e.target.innerText);
 
-  }, false);
+  // }, false);
   }, [])
+
+  const tweetHandler=()=>{
+    dispatch(newTweetAction())
+  }
   
   return (
     <div className={styles.Main}>
@@ -116,7 +120,9 @@ const MyHome = () => {
             </div>
             <div className={styles.twitt}>
                 <Photo className={styles.icon}/>
-                <button>توییت</button>
+                <button
+                onClick={tweetHandler}
+                >توییت</button>
             </div>
         </div>
                 {tweets &&  
