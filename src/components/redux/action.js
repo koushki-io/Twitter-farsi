@@ -53,7 +53,7 @@ export const logOutAction=(navigate)=>(dispatch)=>{
     dispatch({type:"logOut"})
     localStorage.clear()
     navigate("/")
-    window.location.reload()
+
 }
 
 
@@ -89,11 +89,12 @@ export const getAllTweetAction=(notify)=>async(dispatch)=>{
     }
 }
 
-export const newTweetAction=(newTweet,notify)=>async(dispatch)=>{
+export const newTweetAction=(newTweet,notify,setupdate)=>async(dispatch)=>{
     dispatch({type:"REQUEST_NEWTWEET"})
     try {
-        const {data}= await getAxios().post("/uploadUserPhoto",newTweet)
+        const {data}= await getAxios().post("/newTweet",{text:newTweet})
         dispatch({type:"SUCCESS_NEWTWEET",payload:data.imagePath})
+        setupdate(data)
         notify(" توییت ثبت شد","success")
             
     } catch (error) {

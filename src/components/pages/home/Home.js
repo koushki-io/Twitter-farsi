@@ -73,13 +73,16 @@ export const TweetList=[
   }
 ]
 
+
 const MyHome = () => {
     const dispatch= useDispatch();
     const {photo}=useSelector(x=>x.getPhoto)
     const {tweets,loading}= useSelector(x=>x.getTweets)
     const {user}= useSelector(x=>x.getSignUp)
+    const [newtweet, setnewtweet] = useState('')
+    const [update, setupdate] = useState()
     
-  // const input=useRef();
+
 
     const getimage=()=>{
     
@@ -92,17 +95,17 @@ const MyHome = () => {
           }
     }
   
-  const [tweet, settweet] = useState()
+  
   useEffect(() => {
     dispatch(getAllTweetAction(notify))
-  //  input.current.addEventListener("input", function(e) {
-  //   console.log(e.target.innerText);
 
-  // }, false);
-  }, [])
+  }, [update])
 
   const tweetHandler=()=>{
-    dispatch(newTweetAction())
+    dispatch(newTweetAction(newtweet,notify,setupdate))
+  }
+  const changeHandler=(e)=>{
+    setnewtweet(e.target.value)
   }
   
   return (
@@ -114,7 +117,8 @@ const MyHome = () => {
             <div className={styles.Profile}>
                 <img  src={getimage()} alt="profile" />
                 <input  
-                //  dangerouslySetInnerHTML={tweet} 
+                onChange={changeHandler}
+              
                   className={styles.input} 
                  placeholder='توییت کن' />
             </div>
