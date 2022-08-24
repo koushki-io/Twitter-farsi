@@ -13,10 +13,11 @@
         gap: 10px;
         justify-content: end;
         padding: 10px 0 10px 20px;
+        cursor: pointer;
 
     img{
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         object-fit: cover;
         border-radius: 50%;
     }
@@ -70,4 +71,43 @@
     span{
         @include font(.8rem,400,rgba(0,0,0,.55))
     }
+}
+.MenuItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    span{
+        cursor: pointer;
+    }
+  
+    .icon{
+    color: #cc0c0c;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+    label{
+        display: flex;
+        align-items: center;
+        .icon{
+            color: green;
+            margin-right: 5px;
+        }
+    }
+}
+.user{
+    display: flex;
+    flex-direction: column;
+
+    .name{
+        @include font(1rem,500,#000);
+    }
+    .username{
+        @include font(.8rem,400,#000);
+        align-self: flex-end;
+        
+    }
+
 }

@@ -6,6 +6,9 @@ import Samsung from '../../../images/Samsung.jpg'
 import TiweeetList from '../../tiweetList/TweetList'
 import Header from '../../header/Header'
 import { renderTweetInput } from '../../helper/renderTweet'
+import { getAllTweetAction } from '../../redux/action'
+import { useDispatch } from 'react-redux'
+import { notify } from '../auth/Alert/tost'
 
 
 
@@ -69,14 +72,17 @@ export const TweetList=[
   }
 ]
 
-
 const MyHome = () => {
+    const dispatch= useDispatch()
   const input=useRef();
+  
   
   const [tweet, settweet] = useState()
   useEffect(() => {
+    dispatch(getAllTweetAction(notify))
    input.current.addEventListener("input", function(e) {
     console.log(e.target.innerText);
+    
   
       
   }, false);

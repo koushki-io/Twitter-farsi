@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux'
 
 const flag=true
 function App() {
- const{data}= useSelector(x=>x.getSignUp)
+ const{user}= useSelector(x=>x.getSignUp)
   return (
     <div className='App'>
       <ToastContainer 
@@ -21,11 +21,13 @@ function App() {
     theme='colored'
     />
       <BrowserRouter>
-{!data.name 
+{!user.name 
       ?
        <Routes>
       <Route path='/login' element={<AuthPage/>}/>
       <Route path='/' element={<Navigate to="login"/>}/>
+     <Route path='*' element={<PageNotFound/>}/>
+
       </Routes> 
     :
     <Layout>
