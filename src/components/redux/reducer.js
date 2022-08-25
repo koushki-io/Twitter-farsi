@@ -41,3 +41,29 @@ export const TweetsReducr=(state={tweets:[],loading:false},action)=>{
     }
 
 }
+export const AllUserReducr=(state={AllUser:[],loading:false},action)=>{
+    switch (action.type) {
+        case "REQUEST_ALLUSER":
+            return {...state,loading:true}
+        case "SUCCESS_ALLUSER":
+            return {...state,loading:false,AllUser:action.payload}
+        case "ERROR_ALLUSER":
+            return {...state,loading:false}
+        default:
+         return state
+    }
+
+}
+export const AllHashTagsReducr=(state={hashtags:[],loading:false},action)=>{
+    switch (action.type) {
+        case "REQUEST_AllHashTags":
+            return {...state,loading:true}
+        case "SUCCESS_AllHashTags":
+            return {...state,loading:false,hashtags:action.payload}
+        case "ERROR_AllHashTags":
+            return {...state,loading:false}
+        default:
+         return state
+    }
+
+}

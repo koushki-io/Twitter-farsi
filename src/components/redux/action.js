@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL='https://twitterapi.liara.run/api';
+
 const getAxios=()=>{
     const user=JSON.parse(localStorage.getItem("user"))
     return axios.create({
@@ -40,10 +41,7 @@ export const LoginAction=(LoginSend,notify,navigate)=>async(dispatch)=>{
          
     } catch (error) {
         dispatch({type:"ERROR"})
-        notify(error.response.data.message,"error")
-        
-
-        
+        notify(error.response.data.message,"error") 
         
     }
 }
@@ -93,12 +91,38 @@ export const newTweetAction=(newTweet,notify,setupdate)=>async(dispatch)=>{
     dispatch({type:"REQUEST_NEWTWEET"})
     try {
         const {data}= await getAxios().post("/newTweet",{text:newTweet})
-        dispatch({type:"SUCCESS_NEWTWEET",payload:data.imagePath})
+        dispatch({type:"SUCCESS_NEWTWEET",payload:data})
         setupdate(data)
         notify(" توییت ثبت شد","success")
             
     } catch (error) {
         dispatch({type:"ERROR_NEWTWEET"})
+        notify(error.response.data.message,"error") 
+        
+    }
+}
+
+export const getAllUser=(notify)=>async(dispatch)=>{
+    dispatch({type:"REQUEST_ALLUSER"})
+    try {
+        const {data}= await getAxios().get("/getAllUser")
+        dispatch({type:"SUCCESS_ALLUSER",payload:data})
+            
+    } catch (error) {
+        dispatch({type:"ERROR_ALLUSER"})
+        notify(error.response.data.message,"error") 
+        
+    }
+}
+export const AllHashTagsAction=(notify)=>async(dispatch)=>{
+    dispatch({type:"REQUEST_AllHashTags"})
+    try {
+        const {data}= await getAxios().get("/getAllHashTags")
+        dispatch({type:"SUCCESS_AllHashTags",payload:data})
+        console.log(data);
+        notify("succes","success") 
+    } catch (error) {
+        dispatch({type:"ERROR_AllHashTags"})
         notify(error.response.data.message,"error") 
         
     }

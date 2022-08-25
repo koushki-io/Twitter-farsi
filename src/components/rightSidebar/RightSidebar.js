@@ -1,21 +1,22 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import styles from './rightSide.module.scss'
 import {Twitter,Tag} from '@mui/icons-material';
 import {useNavigate} from 'react-router-dom';
-const Hashtag=[
-  "پرچم_دار_جدید",
-  "کرونا_ویروس",
-  "سامسونگ",
-  "هلو_سامر",
-  "پرچم_دار_جدید",
-  "کرونا_ویروس",
-  "سامسونگ",
-        "هلو_سامر"
-  
-]
+import {useDispatch,useSelector} from 'react-redux';
+import { AllHashTagsAction } from '../redux/action';
+import {notify} from '../pages/auth/Alert/tost'
+
 
 const RightSidebar = () => {
+   const {hashtags} = useSelector(x=>x.getHashtags)
+ const dispatch= useDispatch()
     const navigate = useNavigate();
+
+    useEffect(() => {
+     dispatch(AllHashTagsAction(notify))
+    }, [])
+
+
   return (
     <div className={styles.RightSidebar}>
       <div 
@@ -35,14 +36,14 @@ const RightSidebar = () => {
           <h3>داغ ترین هشتگ ها</h3>
         </div>
 
-        {Hashtag.map((item,index)=>{
+        {hashtags.map((item)=>{
         return <div 
         onClick={()=>{
           navigate('/hashtags')
         }}
-        key={index} className={styles.ConetentItem}>
+        key={item._id} className={styles.ConetentItem}>
         <Tag className={styles.tag}/>
-        <span>{item}</span>
+        <span>{item.text}</span>
       </div>
       })}
 

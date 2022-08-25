@@ -11,7 +11,7 @@ import { Logout,Collections} from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { logOutAction, UploadPhotoAction } from '../redux/action'
+import { getAllUser, logOutAction, UploadPhotoAction } from '../redux/action'
 import { useSelector } from 'react-redux'
 import ProfileUser from "../../images/user.png"
 import {notify} from "../pages/auth/Alert/tost"
@@ -21,23 +21,31 @@ import { useEffect } from 'react'
 
 
 
-const User=[
-    {name: "Xiaomi", image:Xiaomi  , email:"@Xiaomi" },
-    {name: "Samsung", image:Samsung  , email:"@Samsung" },
-    {name: "BillGates", image:BillGates  , email:"@BillGates" },
-    {name: "Mike_IMC", image:Mike_IMC  , email:"@Mike_IMC" },
-    {name: "Shirley_IMC", image:Shirley_IMC  , email:"@Shirley_IMC" },
-]
+// const User=[
+//     {name: "Xiaomi", image:Xiaomi  , email:"@Xiaomi" },
+//     {name: "Samsung", image:Samsung  , email:"@Samsung" },
+//     {name: "BillGates", image:BillGates  , email:"@BillGates" },
+//     {name: "Mike_IMC", image:Mike_IMC  , email:"@Mike_IMC" },
+//     {name: "Shirley_IMC", image:Shirley_IMC  , email:"@Shirley_IMC" },
+// ]
 
 const LeftSidebar = () => {
     const [ancherMenu, setancherMenu] = useState()
     const [imageFile, setimageFile] = useState()
     const [imagePath, setimagePath] = useState(false)
     const{user}= useSelector(x=>x.getSignUp)
+    const{AllUser}= useSelector(x=>x.getAlluser)
     const {photo}= useSelector(x=>x.getPhoto)
 
     
-const disptch =useDispatch()
+                const disptch =useDispatch()
+                const navigate= useNavigate();
+                useEffect(() => {
+                  disptch(getAllUser(notify))
+                }, [])
+
+
+
         const MenuHandler=(e)=>{
             if (ancherMenu) {
                 
@@ -50,13 +58,20 @@ const disptch =useDispatch()
             disptch(logOutAction(navigate))
         }
    
-    const navigate= useNavigate();
 
     const getImage=()=>{
         if(imagePath){
             return imagePath
         }else if(photo){
             return photo
+        } else{
+            return ProfileUser
+        }
+    }
+
+    const getImageUsers=(image)=>{
+        if(image){
+            return image
         } else{
             return ProfileUser
         }
@@ -98,15 +113,15 @@ const disptch =useDispatch()
             <h4>بهترین خبرنگاران</h4>
             </div>
 
-                    {User.map((item,index)=>{
+                    {AllUser.map((item)=>{
                         return <ButtonBase onClick={()=>{
                             navigate(`/users`)
                         }}
-                        className={styles.item} key={index}>
-                        <img src={item.image} alt="profile" />
+                        className={styles.item} key={item._id}>
+                        <img src={getImageUsers(item.image)} alt="profile" />
                         <div>
                             <h4>{item.name}</h4>
-                            <span>{item.email}</span>
+                            <span>{item.username}</span>
                         </div>
                         
         

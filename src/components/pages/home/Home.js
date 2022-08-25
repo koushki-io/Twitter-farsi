@@ -123,7 +123,7 @@ const MyHome = () => {
                  placeholder='توییت کن' />
             </div>
             <div className={styles.twitt}>
-                <Photo className={styles.icon}/>
+             
                 <button
                 onClick={tweetHandler}
                 >توییت</button>
