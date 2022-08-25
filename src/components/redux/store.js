@@ -1,7 +1,7 @@
 import { createStore,combineReducers,applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk";
-import { SignUpReducr,AllHashTagsReducr , PhotoReducr,TweetsReducr,AllUserReducr} from "./reducer";
+import { SignUpReducr,reTweetReducer,AllHashTagsReducr , PhotoReducr,TweetsReducr,AllUserReducr} from "./reducer";
 
 const middeleware=[thunk]
 
@@ -11,7 +11,8 @@ const reducer=combineReducers({
      getPhoto: PhotoReducr,
      getTweets: TweetsReducr,
      getAlluser: AllUserReducr,
-     getHashtags:AllHashTagsReducr,
+     getHashtags: AllHashTagsReducr,
+      getReTweet: reTweetReducer,
 })
 const user=localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
 const image=localStorage.getItem("image") ? JSON.parse(localStorage.getItem("image")) : ''

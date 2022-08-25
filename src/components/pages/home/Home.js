@@ -7,7 +7,7 @@ import Samsung from '../../../images/Samsung.jpg'
 import TiweeetList from '../../tiweetList/TweetList'
 import Header from '../../header/Header'
 import { renderTweetInput } from '../../helper/renderTweet'
-import { getAllTweetAction, newTweetAction } from '../../redux/action'
+import { getAllTweetAction, newTweetAction, reTweetAction } from '../../redux/action'
 import { useDispatch , useSelector } from 'react-redux'
 import { notify } from '../auth/Alert/tost'
 
@@ -78,12 +78,10 @@ const MyHome = () => {
     const dispatch= useDispatch();
     const {photo}=useSelector(x=>x.getPhoto)
     const {tweets,loading}= useSelector(x=>x.getTweets)
+    const getReTweet= useSelector(x=>x.getReTweet)
     const {user}= useSelector(x=>x.getSignUp)
-    const [newtweet, setnewtweet] = useState('')
     const [update, setupdate] = useState()
     
-
-
     const getimage=()=>{
     
       
@@ -102,10 +100,10 @@ const MyHome = () => {
   }, [update])
 
   const tweetHandler=()=>{
-    dispatch(newTweetAction(newtweet,notify,setupdate))
+    dispatch(newTweetAction(getReTweet,notify,setupdate))
   }
   const changeHandler=(e)=>{
-    setnewtweet(e.target.value)
+    dispatch(reTweetAction(e.target.value))
   }
   
   return (
@@ -118,7 +116,7 @@ const MyHome = () => {
                 <img  src={getimage()} alt="profile" />
                 <input  
                 onChange={changeHandler}
-              
+                      value={getReTweet}
                   className={styles.input} 
                  placeholder='توییت کن' />
             </div>

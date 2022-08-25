@@ -93,6 +93,7 @@ export const newTweetAction=(newTweet,notify,setupdate)=>async(dispatch)=>{
         const {data}= await getAxios().post("/newTweet",{text:newTweet})
         dispatch({type:"SUCCESS_NEWTWEET",payload:data})
         setupdate(data)
+        dispatch(reTweetAction(''))
         notify(" توییت ثبت شد","success")
             
     } catch (error) {
@@ -120,10 +121,14 @@ export const AllHashTagsAction=(notify)=>async(dispatch)=>{
         const {data}= await getAxios().get("/getAllHashTags")
         dispatch({type:"SUCCESS_AllHashTags",payload:data})
         console.log(data);
-        notify("succes","success") 
     } catch (error) {
         dispatch({type:"ERROR_AllHashTags"})
         notify(error.response.data.message,"error") 
         
     }
+}
+
+export const reTweetAction=(text)=>(dispatch)=>{
+    dispatch({type:"RETWEET",payload:text})
+
 }

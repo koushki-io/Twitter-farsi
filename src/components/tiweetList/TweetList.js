@@ -3,11 +3,17 @@ import styles from "./tweet.module.scss"
 import profil from '../../images/Profile1.jpg'
 import userImage from '../../images/user.png'
 import { Favorite, Loop } from '@mui/icons-material'
+import { useDispatch} from 'react-redux'
 import { renderTweet } from '../helper/renderTweet'
+import { reTweetAction } from '../redux/action'
 
 
 
 const TiweeetList = ({TweetList}) => {
+ const dispatch= useDispatch()
+const reTweetHandler=(text)=>{
+  dispatch(reTweetAction(text))
+}
   const getimage=(image)=>{
     if(image){
         return image
@@ -34,7 +40,7 @@ const TiweeetList = ({TweetList}) => {
         <div className={styles.Box}>
           <span>{tweet.likes}</span>
           <Favorite className={styles.HeartIcon}/>
-          <Loop className={styles.Loop} />
+          <Loop className={styles.Loop} onClick={()=>reTweetHandler(tweet.text)}  />
                     </div>
 
         </div>

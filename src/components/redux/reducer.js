@@ -67,3 +67,12 @@ export const AllHashTagsReducr=(state={hashtags:[],loading:false},action)=>{
     }
 
 }
+export const reTweetReducer=(state='',action)=>{
+    switch (action.type) {
+        case "RETWEET":
+            return action.payload
+        default:
+         return state
+    }
+
+}

@@ -9,12 +9,13 @@ import {notify} from '../pages/auth/Alert/tost'
 
 const RightSidebar = () => {
    const {hashtags} = useSelector(x=>x.getHashtags)
+   const {tweets}= useSelector(x=>x.getTweets)
  const dispatch= useDispatch()
     const navigate = useNavigate();
 
     useEffect(() => {
      dispatch(AllHashTagsAction(notify))
-    }, [])
+    }, [tweets])
 
 
   return (
