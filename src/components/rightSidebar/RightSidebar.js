@@ -40,7 +40,7 @@ const RightSidebar = () => {
         {hashtags.map((item)=>{
         return <div 
         onClick={()=>{
-          navigate('/hashtags')
+          navigate(`/hashtags/${item.text}`)
         }}
         key={item._id} className={styles.ConetentItem}>
         <Tag className={styles.tag}/>

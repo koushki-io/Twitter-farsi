@@ -33,7 +33,7 @@ function App() {
     <Layout>
     <Routes>
      <Route path='/home' element={<Home/>}/>
-     <Route path='/hashtags' element={<Hashtag/>}/>
+     <Route path='/hashtags/:hashtagId' element={<Hashtag/>}/>
      <Route path='/users' element={<User/>}/>
      <Route path='/' element={<Navigate to='home'/>}/>
      <Route path='*' element={<PageNotFound/>}/>

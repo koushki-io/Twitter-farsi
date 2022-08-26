@@ -76,3 +76,19 @@ export const reTweetReducer=(state='',action)=>{
     }
 
 }
+
+
+
+export const hashtagByidReducr=(state={hashID:[],loading:false},action)=>{
+    switch (action.type) {
+        case "REQUEST_HASGTAG_ID":
+            return {...state,loading:true}
+        case "SUCCESS_HASGTAG_ID":
+            return {...state,loading:false,hashID:action.payload}
+        case "ERROR_HASGTAG_ID":
+            return {...state,loading:false}
+        default:
+         return state
+    }
+
+}

@@ -115,12 +115,14 @@ export const getAllUser=(notify)=>async(dispatch)=>{
         
     }
 }
+
+
 export const AllHashTagsAction=(notify)=>async(dispatch)=>{
     dispatch({type:"REQUEST_AllHashTags"})
     try {
         const {data}= await getAxios().get("/getAllHashTags")
         dispatch({type:"SUCCESS_AllHashTags",payload:data})
-        console.log(data);
+     
     } catch (error) {
         dispatch({type:"ERROR_AllHashTags"})
         notify(error.response.data.message,"error") 
@@ -131,4 +133,22 @@ export const AllHashTagsAction=(notify)=>async(dispatch)=>{
 export const reTweetAction=(text)=>(dispatch)=>{
     dispatch({type:"RETWEET",payload:text})
 
+}
+
+
+
+export const hashtagIdAction=(hashtag,notify)=>async(dispatch)=>{
+    dispatch({type:"REQUEST_HASGTAG_ID"})
+    try {
+        const {data}= await getAxios().post("/getAllTweet",{hashtag:'#'+hashtag})
+        const sortByTag=data.filter(item=>item.hashTags.find(item=>item==hashtag))
+      
+        dispatch({type:"SUCCESS_HASGTAG_ID",payload:sortByTag})
+            console.log(data);
+            console.log(sortByTag);
+    } catch (error) {
+        dispatch({type:"ERROR_HASGTAG_ID"})
+        notify(error.response.data.message,"error") 
+        
+    }
 }
